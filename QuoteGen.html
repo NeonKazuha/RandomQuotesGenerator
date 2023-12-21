@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Quote Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 90vh;
+            background-image: url("https://images.pexels.com/photos/688668/pexels-photo-688668.jpeg?auto=compress&cs=tinysrgb&w=600");
+            background-size: cover;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .container {
+            max-width: 600px;
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <h1 class="mb-4">Random Quote Generator</h1>
+
+        <div class="blockquote">
+            <p id="quote" class="mb-0"></p>
+            <footer class="blockquote-footer mt-2" id="author"></footer>
+        </div>
+
+        <button class="btn btn-outline-primary" id="btn">Generate Random Quote</button>
+
+    </div>
+
+    <script>
+        let quote = document.getElementById("quote");
+        let author = document.getElementById("author");
+        let btn = document.getElementById("btn");
+
+        function getQuote() {
+            fetch("https://dummyjson.com/quotes/random")
+                .then((res) => res.json())
+                .then((data) => {
+                    quote.innerText = data.quote;
+                    author.innerText = data.author;
+                });
+        }
+
+        window.addEventListener("load", getQuote);
+        btn.addEventListener("click", getQuote);
+
+
+
+    </script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>
